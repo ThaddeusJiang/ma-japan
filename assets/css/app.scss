@@ -569,3 +569,7 @@ img {
   position: relative;
   width: 100%;
 }
+
+dd {
+  @apply font-semibold;
+}

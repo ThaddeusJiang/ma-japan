@@ -1,10 +1,88 @@
-<div class="py-4 md:py-12 text-lg md:text-3xl underline-none">
-  <%= link "← All posts", to: Routes.blog_path(@conn, :index)%>
-</div>
+<main  class="prose prose-sm prose-purple sm:prose lg:prose-lg xl:prose-2xl mx-auto pb-8 ">
+  <h1 class="w-full text-2xl font-bold pb-4">
+    <%= @value.name %>
+  </h1>
 
+  <section>
+    <h2>事业内容</h2>
+    <div>
+      <p>
+        <%= @value.summary %>
+      </p>
+    </div>
+  </section>
+  <section>
+    <h2>预期金额</h2>
+    <div>
+      <p> <%= @value.min_price %> 万日元 <span>~</span> <%= @value.max_price %>万日元</p>
+    </div>
+  </section>
+  <section>
+    <h2>公司概要</h2>
+    <div>
+      <dl>
+        <dd>行业</dd>
+        <dt>药局</dt>
 
+        <dd>事业形态</dd>
+        <dt>法人</dt>
 
-<article class="prose prose-sm prose-purple sm:prose lg:prose-lg xl:prose-2xl mx-auto pb-8">
+        <dd>从业员工数</dd>
+        <dt>50人～99人</dt>
+      </dl>
+    </div>
+  </section>
+  <section>
+    <h2>M&A 概要</h2>
+    <div>
+      <dl>
+        <dd>对象</dd>
+        <dt>事业</dt>
 
-  <h1 class="w-full text-3xl font-bold pb-4"><%= @value.name %></h1>
-</article>
+        <dd>对象（详细）</dd>
+        <dt>库存、店铺、员工等</dt>
+
+        <dd>M&A对象</dd>
+        <dt>所有人（包含个人）</dt>
+
+        <dd>重视点</dd>
+        <dt>价格</dt>
+      </dl>
+
+    </div>
+  </section>
+  <section>
+    <h2>财务概要</h2>
+    <div>
+      <dl>
+        <dd>营业额</dd>
+        <dt>3000万日元～5000万日元</dt>
+
+        <dd>营业利益</dd>
+        <dt>0 ～ 300万日元</dt>
+
+        <dd>持有人回报</dd>
+        <dt>0～100万日元</dt>
+
+        <dd>现金流</dd>
+        <dt>0～100万日元</dt>
+
+      </dl>
+    </div>
+  </section>
+  <section>
+    <h2>事业概要</h2>
+    <div>
+      <dl>
+        <dd>商流</dd>
+        <dt>从 XXX 公司购买药品</dt>
+
+        <dd>自荐</dd>
+        <dt>1.车站前；2.便宜；3.附带住宅</dt>
+
+        <dd>组织结构</dd>
+        <dt>药剂师 1 名，兼职店员 2 人，事务 1 人。</dt>
+      </dl>
+    </div>
+  </section>
+</main>
