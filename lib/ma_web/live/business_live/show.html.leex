@@ -1,0 +1,82 @@
+<h1>Show Business</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, MaWeb.BusinessLive.FormComponent,
+    id: @business.id,
+    title: @page_title,
+    action: @live_action,
+    business: @business,
+    return_to: Routes.business_show_path(@socket, :show, @business) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @business.name %>
+  </li>
+
+  <li>
+    <strong>Public:</strong>
+    <%= @business.public %>
+  </li>
+
+  <li>
+    <strong>Public date:</strong>
+    <%= @business.public_date %>
+  </li>
+
+  <li>
+    <strong>View count:</strong>
+    <%= @business.view_count %>
+  </li>
+
+  <li>
+    <strong>Like count:</strong>
+    <%= @business.like_count %>
+  </li>
+
+  <li>
+    <strong>Summary:</strong>
+    <%= @business.summary %>
+  </li>
+
+  <li>
+    <strong>Min price:</strong>
+    <%= @business.min_price %>
+  </li>
+
+  <li>
+    <strong>Max price:</strong>
+    <%= @business.max_price %>
+  </li>
+
+  <li>
+    <strong>Category:</strong>
+    <%= @business.category %>
+  </li>
+
+  <li>
+    <strong>Personal:</strong>
+    <%= @business.personal %>
+  </li>
+
+  <li>
+    <strong>Pr:</strong>
+    <%= @business.pr %>
+  </li>
+
+  <li>
+    <strong>Main image:</strong>
+    <%= @business.main_image %>
+  </li>
+
+  <li>
+    <strong>Images:</strong>
+    <%= @business.images %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.business_show_path(@socket, :edit, @business), class: "button" %></span>
+<span><%= live_redirect "Back", to: Routes.business_index_path(@socket, :index) %></span>

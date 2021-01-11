@@ -14,10 +14,6 @@ config :ma, :pow,
   user: Ma.Accounts.User,
   repo: Ma.Repo
 
-config :torch,
-  otp_app: :ma,
-  template_format: "eex"
-
 # Configures the endpoint
 config :ma, MaWeb.Endpoint,
   url: [host: "localhost"],

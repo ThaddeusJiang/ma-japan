@@ -1,0 +1,62 @@
+<h2><%= @title %></h2>
+
+<%= f = form_for @changeset, "#",
+  id: "business-form",
+  phx_target: @myself,
+  phx_change: "validate",
+  phx_submit: "save" %>
+
+  <%= label f, :name %>
+  <%= text_input f, :name %>
+  <%= error_tag f, :name %>
+
+  <%= label f, :public %>
+  <%= checkbox f, :public %>
+  <%= error_tag f, :public %>
+
+  <%= label f, :public_date %>
+  <%= date_select f, :public_date %>
+  <%= error_tag f, :public_date %>
+
+  <%= label f, :view_count %>
+  <%= number_input f, :view_count %>
+  <%= error_tag f, :view_count %>
+
+  <%= label f, :like_count %>
+  <%= number_input f, :like_count %>
+  <%= error_tag f, :like_count %>
+
+  <%= label f, :summary %>
+  <%= text_input f, :summary %>
+  <%= error_tag f, :summary %>
+
+  <%= label f, :min_price %>
+  <%= number_input f, :min_price %>
+  <%= error_tag f, :min_price %>
+
+  <%= label f, :max_price %>
+  <%= number_input f, :max_price %>
+  <%= error_tag f, :max_price %>
+
+  <%= label f, :category %>
+  <%= text_input f, :category %>
+  <%= error_tag f, :category %>
+
+  <%= label f, :personal %>
+  <%= checkbox f, :personal %>
+  <%= error_tag f, :personal %>
+
+  <%= label f, :pr %>
+  <%= text_input f, :pr %>
+  <%= error_tag f, :pr %>
+
+  <%= label f, :main_image %>
+  <%= text_input f, :main_image %>
+  <%= error_tag f, :main_image %>
+
+  <%= label f, :images %>
+  <%= text_input f, :images %>
+  <%= error_tag f, :images %>
+
+  <%= submit "Save", phx_disable_with: "Saving..." %>
+</form>
