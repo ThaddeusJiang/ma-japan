@@ -1,0 +1,5 @@
+<section >
+  <%= for item <- @values do %>
+    <%= render "_business_card.html", conn: @conn,  value: item %>
+  <% end %>
+</section>

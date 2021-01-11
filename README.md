@@ -27,3 +27,14 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+
+TODO:
+
+~~list~~
+detail
+like
+view_count
+首页
+
+注册 & Email
+付款

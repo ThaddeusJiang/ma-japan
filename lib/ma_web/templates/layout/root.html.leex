@@ -10,10 +10,12 @@
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body class="flex flex-col min-h-screen">
-    <header class="flex-none p-4 md:p-10 border ">
-      <h1 class="text-3xl font-extrabold text-purple-600">
-        <a href="/">Elixir/Erlang 精选</a>
-      </h1>
+    <header class="flex-none p-4 md:p-10 border flex justify-between">
+      <div class="text-3xl font-extrabold text-purple-600">
+        <a href="/">M&A 精选</a>
+      </div>
+      <%# 原来是这样，重利用 html %>
+      <%= render "_user_menu.html", assigns %>
     </header>
 
     <div class="flex-grow px-4 md:px-10">

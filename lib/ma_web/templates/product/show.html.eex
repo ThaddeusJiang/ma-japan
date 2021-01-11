@@ -1,0 +1,10 @@
+<div class="py-4 md:py-12 text-lg md:text-3xl underline-none">
+  <%= link "← All posts", to: Routes.blog_path(@conn, :index)%>
+</div>
+
+
+
+<article class="prose prose-sm prose-purple sm:prose lg:prose-lg xl:prose-2xl mx-auto pb-8">
+
+  <h1 class="w-full text-3xl font-bold pb-4"><%= @value.name %></h1>
+</article>

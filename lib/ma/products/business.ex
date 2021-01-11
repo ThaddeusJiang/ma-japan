@@ -23,7 +23,7 @@ defmodule Ma.Products.Business do
   @doc false
   def changeset(business, attrs) do
     business
-    |> cast(attrs, [:name])
+    |> cast(attrs, [:name, :summary, :pr, :category, :personal, :min_price, :max_price, :public])
     |> validate_required([:name])
     |> validate_length(:name, min: 2, max: 250)
   end

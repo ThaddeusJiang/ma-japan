@@ -31,10 +31,13 @@ defmodule MaWeb.Router do
   scope "/", MaWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    get "/", ProductController, :index
 
     get "/blogs", BlogController, :index
     get "/blogs/:id", BlogController, :show
+
+    get "/businesses", ProductController, :index
+    get "/businesses/:id", ProductController, :show
   end
 
   # Other scopes may use custom stacks.

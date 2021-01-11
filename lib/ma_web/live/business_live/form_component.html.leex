@@ -15,16 +15,7 @@
   <%= error_tag f, :public %>
 
   <%= label f, :public_date %>
-  <%= date_select f, :public_date %>
-  <%= error_tag f, :public_date %>
-
-  <%= label f, :view_count %>
-  <%= number_input f, :view_count %>
-  <%= error_tag f, :view_count %>
-
-  <%= label f, :like_count %>
-  <%= number_input f, :like_count %>
-  <%= error_tag f, :like_count %>
+  <div>come soon ...</div>
 
   <%= label f, :summary %>
   <%= text_input f, :summary %>
@@ -49,14 +40,6 @@
   <%= label f, :pr %>
   <%= text_input f, :pr %>
   <%= error_tag f, :pr %>
-
-  <%= label f, :main_image %>
-  <%= text_input f, :main_image %>
-  <%= error_tag f, :main_image %>
-
-  <%= label f, :images %>
-  <%= text_input f, :images %>
-  <%= error_tag f, :images %>
 
   <%= submit "Save", phx_disable_with: "Saving..." %>
 </form>

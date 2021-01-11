@@ -1,6 +1,7 @@
 <h1>Listing Businesses</h1>
 
 <%= if @live_action in [:new, :edit] do %>
+<%# TODO: live_modal 如何使用？ %>
   <%= live_modal @socket, MaWeb.BusinessLive.FormComponent,
     id: @business.id || :new,
     title: @page_title,
@@ -12,19 +13,14 @@
 <table>
   <thead>
     <tr>
+      <th>Main image</th>
       <th>Name</th>
       <th>Public</th>
-      <th>Public date</th>
       <th>View count</th>
       <th>Like count</th>
-      <th>Summary</th>
       <th>Min price</th>
       <th>Max price</th>
       <th>Category</th>
-      <th>Personal</th>
-      <th>Pr</th>
-      <th>Main image</th>
-      <th>Images</th>
 
       <th></th>
     </tr>
@@ -32,20 +28,15 @@
   <tbody id="businesses">
     <%= for business <- @businesses do %>
       <tr id="business-<%= business.id %>">
+        <td><%= business.main_image %></td>
         <td><%= business.name %></td>
         <td><%= business.public %></td>
-        <td><%= business.public_date %></td>
         <td><%= business.view_count %></td>
         <td><%= business.like_count %></td>
-        <td><%= business.summary %></td>
+
         <td><%= business.min_price %></td>
         <td><%= business.max_price %></td>
         <td><%= business.category %></td>
-        <td><%= business.personal %></td>
-        <td><%= business.pr %></td>
-        <td><%= business.main_image %></td>
-        <td><%= business.images %></td>
-
         <td>
           <span><%= live_redirect "Show", to: Routes.business_show_path(@socket, :show, business) %></span>
           <span><%= live_patch "Edit", to: Routes.business_index_path(@socket, :edit, business) %></span>
