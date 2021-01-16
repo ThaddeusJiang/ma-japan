@@ -1,4 +1,6 @@
 defmodule Ma.Accounts.UserNotifier do
+  alias Ma.Email
+  alias Ma.Mailer
   # For simplicity, this module simply logs messages to the terminal.
   # You should replace it by a proper email or notification tool, such as:
   #
@@ -8,6 +10,10 @@ defmodule Ma.Accounts.UserNotifier do
   defp deliver(to, body) do
     require Logger
     Logger.debug(body)
+
+    Email.welcome_email(to, body)
+    |> Mailer.deliver_now()
+
     {:ok, %{to: to, body: body}}
   end
 

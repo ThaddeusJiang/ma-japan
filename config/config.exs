@@ -22,6 +22,13 @@ config :ma, MaWeb.Endpoint,
   pubsub_server: Ma.PubSub,
   live_view: [signing_salt: "d8B+gddh"]
 
+config :ma, Ma.Mailer,
+  adapter: Bamboo.SendGridAdapter,
+  api_key: "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",
+  hackney_opts: [
+    recv_timeout: :timer.minutes(1)
+  ]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

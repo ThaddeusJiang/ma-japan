@@ -66,6 +66,9 @@ config :ma, MaWeb.Endpoint,
     ]
   ]
 
+# FIXME: I don't know
+# config :ma, Ma.Mailer, sandbox: true
+
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
