@@ -8,6 +8,8 @@ defmodule MaWeb.ProductController do
   end
 
   def show(conn, %{"id" => id}) do
-    render(conn, "show.html", value: Products.get_business!(id))
+    business = Products.get_business!(id)
+    {:ok, business} = Products.inc_view_count(business)
+    render(conn, "show.html", value: business)
   end
 end

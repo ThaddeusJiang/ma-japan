@@ -74,6 +74,22 @@ defmodule Ma.Products do
   end
 
   @doc """
+  Increase view_count
+
+      iex> inc_view_count(business)
+      {:ok, %Business{}}
+
+      iex> inc_view_count(business)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def inc_view_count(%Business{} = business) do
+    business
+    |> Business.inc_view_count()
+    |> Repo.update()
+  end
+
+  @doc """
   Deletes a business.
 
   ## Examples

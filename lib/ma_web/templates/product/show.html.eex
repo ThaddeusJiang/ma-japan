@@ -1,4 +1,4 @@
-<main  class="prose prose-sm prose-purple sm:prose lg:prose-lg xl:prose-2xl mx-auto pb-8 ">
+<main  class="prose prose-sm prose-purple sm:prose lg:prose-lg mx-auto pb-8 ">
   <h1 class="w-full text-2xl font-bold pb-4">
     <%= @value.name %>
   </h1>

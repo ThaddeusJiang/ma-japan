@@ -27,4 +27,9 @@ defmodule Ma.Products.Business do
     |> validate_required([:name])
     |> validate_length(:name, min: 2, max: 250)
   end
+
+  def inc_view_count(business) do
+    business
+    |> cast(%{view_count: business.view_count + 1}, [:view_count])
+  end
 end

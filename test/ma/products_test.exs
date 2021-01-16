@@ -6,9 +6,51 @@ defmodule Ma.ProductsTest do
   describe "businesses" do
     alias Ma.Products.Business
 
-    @valid_attrs %{category: "some category", images: "some images", like_count: 42, main_image: "some main_image", max_price: 42, min_price: 42, name: "some name", personal: true, pr: "some pr", public: true, public_date: ~D[2010-04-17], summary: "some summary", view_count: 42}
-    @update_attrs %{category: "some updated category", images: "some updated images", like_count: 43, main_image: "some updated main_image", max_price: 43, min_price: 43, name: "some updated name", personal: false, pr: "some updated pr", public: false, public_date: ~D[2011-05-18], summary: "some updated summary", view_count: 43}
-    @invalid_attrs %{category: nil, images: nil, like_count: nil, main_image: nil, max_price: nil, min_price: nil, name: nil, personal: nil, pr: nil, public: nil, public_date: nil, summary: nil, view_count: nil}
+    @valid_attrs %{
+      category: "some category",
+      images: "some images",
+      like_count: 42,
+      main_image: "some main_image",
+      max_price: 42,
+      min_price: 42,
+      name: "some name",
+      personal: true,
+      pr: "some pr",
+      public: true,
+      public_date: ~D[2010-04-17],
+      summary: "some summary",
+      view_count: 42
+    }
+    @update_attrs %{
+      category: "some updated category",
+      images: "some updated images",
+      like_count: 43,
+      main_image: "some updated main_image",
+      max_price: 43,
+      min_price: 43,
+      name: "some updated name",
+      personal: false,
+      pr: "some updated pr",
+      public: false,
+      public_date: ~D[2011-05-18],
+      summary: "some updated summary",
+      view_count: 43
+    }
+    @invalid_attrs %{
+      category: nil,
+      images: nil,
+      like_count: nil,
+      main_image: nil,
+      max_price: nil,
+      min_price: nil,
+      name: nil,
+      personal: nil,
+      pr: nil,
+      public: nil,
+      public_date: nil,
+      summary: nil,
+      view_count: nil
+    }
 
     def business_fixture(attrs \\ %{}) do
       {:ok, business} =
@@ -72,6 +114,12 @@ defmodule Ma.ProductsTest do
       business = business_fixture()
       assert {:error, %Ecto.Changeset{}} = Products.update_business(business, @invalid_attrs)
       assert business == Products.get_business!(business.id)
+    end
+
+    test "inc_view_count/1 updates the business" do
+      business = business_fixture()
+      assert {:ok, %Business{} = business} = Products.inc_view_count(business)
+      assert business.view_count == 43
     end
 
     test "delete_business/1 deletes the business" do
