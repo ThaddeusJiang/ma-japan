@@ -118,13 +118,20 @@ input[type="submit"] {
   font-weight: 700;
   height: 3.8rem;
   letter-spacing: 0.1rem;
-  line-height: 3.8rem;
+  // line-height: 3.8rem;
   padding: 0 3rem;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
 }
+
+button,
+.gradient2 {
+  background-color: #f39f86;
+  background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
+}
+
 .button:focus,
 .button:hover,
 button:focus,
@@ -553,13 +560,13 @@ img {
   float: right;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 80rem;
-  padding: 0 2rem;
-  position: relative;
-  width: 100%;
-}
+// .container {
+//   margin: 0 auto;
+//   max-width: 80rem;
+//   padding: 0 2rem;
+//   position: relative;
+//   width: 100%;
+// }
 
 dd {
   @apply font-semibold;

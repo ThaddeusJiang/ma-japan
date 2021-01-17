@@ -18,6 +18,14 @@ defmodule MaWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :landing do
+    plug :put_layout, {MaWeb.LayoutView, :landing}
+  end
+
+  pipeline :app do
+    plug :put_layout, {MaWeb.LayoutView, :app_new}
+  end
+
   pipeline :admin do
     plug MaWeb.EnsureRolePlug, :admin
   end
@@ -29,9 +37,13 @@ defmodule MaWeb.Router do
   end
 
   scope "/", MaWeb do
-    pipe_through :browser
+    pipe_through [:browser, :landing]
 
-    live "/", PageLive, :index
+    get "/", LandingController, :index
+  end
+
+  scope "/", MaWeb do
+    pipe_through [:browser, :app]
 
     get "/blogs", BlogController, :index
     get "/blogs/:id", BlogController, :show
@@ -53,7 +65,8 @@ defmodule MaWeb.Router do
   ## Authentication routes
   scope "/", MaWeb do
     # 如果登录了，跳转到 /
-    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    pipe_through [:browser, :redirect_if_user_is_authenticated, :app]
 
     get "/register", UserRegistrationController, :new
     post "/register", UserRegistrationController, :create
