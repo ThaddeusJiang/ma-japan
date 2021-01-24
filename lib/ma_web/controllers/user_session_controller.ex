@@ -23,4 +23,22 @@ defmodule MaWeb.UserSessionController do
     |> put_flash(:info, "Logged out successfully.")
     |> UserAuth.log_out_user()
   end
+
+  def manage(conn, _) do
+    new_customer = %{
+      email: "thaddeusjiang@gmail.com"
+    }
+
+    {:ok, stripe_customer} = Stripe.Customer.create(new_customer)
+
+    params = %{
+      customer: stripe_customer.id,
+      return_url: "http://localhost:4000"
+    }
+
+    {:ok, portal_session} = Stripe.BillingPortal.Session.create(params)
+
+    conn
+    |> redirect(external: portal_session.url)
+  end
 end

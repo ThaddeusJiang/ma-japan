@@ -9,6 +9,9 @@ defmodule Ma.Repo.Migrations.CreateUsersAuthTables do
       add :password_hash, :string, null: false
       add :confirmed_at, :naive_datetime
       add :role, :string, null: false
+      add :plan # lookup_key
+      add :stripe_customer_id
+      add :subscription_status, default: "incomplete"
 
       timestamps()
     end

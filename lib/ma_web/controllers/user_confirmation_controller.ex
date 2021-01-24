@@ -7,8 +7,8 @@ defmodule MaWeb.UserConfirmationController do
     render(conn, "new.html")
   end
 
-  def create(conn, %{"user" => %{"email" => email}}) do
-    if user = Accounts.get_user_by_email(email) do
+  def create(conn, %{}) do
+    if user = conn.assigns.current_user do
       Accounts.deliver_user_confirmation_instructions(
         user,
         &Routes.user_confirmation_url(conn, :confirm, &1)

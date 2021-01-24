@@ -10,6 +10,10 @@ use Mix.Config
 config :ma,
   ecto_repos: [Ma.Repo]
 
+config :stripity_stripe,
+  api_key:
+    "sk_test_51ICmUpGRaO6xlSVQ4UTshGh9FeEBshYzdOMZkivcIaK7eVh88cZE81Hy8AeqFZrjIxbCmygH1C9aQInHoZTcg41H004xHszaMQ"
+
 config :ma, :pow,
   user: Ma.Accounts.User,
   repo: Ma.Repo

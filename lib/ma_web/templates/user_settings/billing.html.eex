@@ -1,0 +1,5 @@
+<%= form_for @conn, Routes.user_session_path(@conn, :manage), [as: :user], fn f -> %>
+  <div>
+    <%= submit "manage" %>
+  </div>
+<% end %>

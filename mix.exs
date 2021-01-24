@@ -53,7 +53,8 @@ defmodule Ma.MixProject do
       {:nimble_publisher, "~> 0.1.1"},
       {:makeup_elixir, ">= 0.0.0"},
       {:makeup_erlang, ">= 0.0.0"},
-      {:bamboo, "~> 1.6"}
+      {:bamboo, "~> 1.6"},
+      {:stripity_stripe, "~> 2.0"}
     ]
   end
 

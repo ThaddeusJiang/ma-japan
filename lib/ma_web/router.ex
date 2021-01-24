@@ -31,7 +31,10 @@ defmodule MaWeb.Router do
   scope "/", MaWeb do
     pipe_through :browser
 
-    get "/", ProductController, :index
+    live "/", PageLive, :index
+
+    get "/about", StaticController, :about, as: :my_static
+    get "/price", StaticController, :price, as: :my_static
 
     get "/blogs", BlogController, :index
     get "/blogs/:id", BlogController, :show
@@ -70,6 +73,7 @@ defmodule MaWeb.Router do
     post "/users/register", UserRegistrationController, :create
     get "/users/log_in", UserSessionController, :new
     post "/users/log_in", UserSessionController, :create
+    post "/users/log_in_manage", UserSessionController, :manage
     get "/users/reset_password", UserResetPasswordController, :new
     post "/users/reset_password", UserResetPasswordController, :create
     get "/users/reset_password/:token", UserResetPasswordController, :edit
