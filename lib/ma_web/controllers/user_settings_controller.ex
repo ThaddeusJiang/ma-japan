@@ -10,6 +10,28 @@ defmodule MaWeb.UserSettingsController do
     render(conn, "edit.html")
   end
 
+  def billing(conn, _params) do
+    render(conn, "billing.html")
+  end
+
+  def manage(conn, _) do
+    new_customer = %{
+      email: "thaddeusjiang@gmail.com"
+    }
+
+    {:ok, stripe_customer} = Stripe.Customer.create(new_customer)
+
+    params = %{
+      customer: stripe_customer.id,
+      return_url: "http://localhost:4000/users/settings/billing"
+    }
+
+    {:ok, portal_session} = Stripe.BillingPortal.Session.create(params)
+
+    conn
+    |> redirect(external: portal_session.url)
+  end
+
   def update(conn, %{"action" => "update_email"} = params) do
     %{"current_password" => password, "user" => user_params} = params
     user = conn.assigns.current_user

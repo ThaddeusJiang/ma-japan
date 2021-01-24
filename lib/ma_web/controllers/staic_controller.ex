@@ -8,4 +8,8 @@ defmodule MaWeb.StaticController do
   def price(conn, _params) do
     render(conn, "price.html")
   end
+
+  def terms(conn, _params) do
+    render(conn, "terms.html")
+  end
 end
