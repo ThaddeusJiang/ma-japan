@@ -80,12 +80,20 @@ defmodule MaWeb.Router do
     put "/users/reset_password/:token", UserResetPasswordController, :update
   end
 
-  scope "/admin", MaWeb do
-    pipe_through [:browser, :require_authenticated_user, :admin]
+  scope "/", MaWeb do
+    pipe_through [:browser, :require_authenticated_user]
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    get "/users/billing/success", BillingController, :success
+    get "/users/billing/failure", BillingController, :failure
+    get "/users/billing", BillingController, :new
+  end
+
+  scope "/admin", MaWeb do
+    pipe_through [:browser, :require_authenticated_user, :admin]
 
     live "/businesses", BusinessLive.Index, :index
     live "/businesses/new", BusinessLive.Index, :new
