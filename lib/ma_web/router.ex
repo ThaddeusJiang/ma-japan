@@ -38,15 +38,59 @@ defmodule MaWeb.Router do
 
     get "/businesses", ProductController, :index
     get "/businesses/:id", ProductController, :show
-  end
 
-  # static
-  scope "/", MaWeb do
-    pipe_through :browser
+    delete "/users/log_out", UserSessionController, :delete
+    get "/users/confirm", UserConfirmationController, :new
+    post "/users/confirm", UserConfirmationController, :create
+    get "/users/confirm/:token", UserConfirmationController, :confirm
 
+    # static
     get "/about", StaticController, :about, as: :my_static
     get "/price", StaticController, :price, as: :my_static
     get "/terms", StaticController, :terms, as: :my_static
+  end
+
+  ## Authentication routes
+  scope "/", MaWeb do
+    # 如果登录了，跳转到 /
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    get "/register", UserRegistrationController, :new
+    post "/register", UserRegistrationController, :create
+    get "/log_in", UserSessionController, :new
+    post "/log_in", UserSessionController, :create
+    get "/reset_password", UserResetPasswordController, :new
+    post "/reset_password", UserResetPasswordController, :create
+    get "/reset_password/:token", UserResetPasswordController, :edit
+    put "/reset_password/:token", UserResetPasswordController, :update
+  end
+
+  scope "/", MaWeb do
+    # 如果未登录，跳转到 /login
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/settings", UserSettingsController, :edit
+    put "/settings", UserSettingsController, :update
+    get "/settings/confirm_email/:token", UserSettingsController, :confirm_email
+    # 付款
+    get "/settings/billing/checkout", BillingController, :new
+    get "/settings/billing/checkout/success", BillingController, :success
+    get "/settings/billing/checkout/failure", BillingController, :failure
+    # 管理订阅
+    get "/settings/billing", UserSettingsController, :billing
+    post "/settings/billing", UserSettingsController, :manage
+  end
+
+  scope "/admin", MaWeb do
+    # 管理员
+    pipe_through [:browser, :require_authenticated_user, :admin]
+
+    live "/businesses", BusinessLive.Index, :index
+    live "/businesses/new", BusinessLive.Index, :new
+    live "/businesses/:id/edit", BusinessLive.Index, :edit
+
+    live "/businesses/:id", BusinessLive.Show, :show
+    live "/businesses/:id/show/edit", BusinessLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
@@ -68,55 +112,5 @@ defmodule MaWeb.Router do
       pipe_through :browser
       live_dashboard "/dashboard", metrics: MaWeb.Telemetry
     end
-  end
-
-  ## Authentication routes
-
-  scope "/", MaWeb do
-    pipe_through [:browser, :redirect_if_user_is_authenticated]
-
-    get "/users/register", UserRegistrationController, :new
-    post "/users/register", UserRegistrationController, :create
-    get "/users/log_in", UserSessionController, :new
-    post "/users/log_in", UserSessionController, :create
-    get "/users/reset_password", UserResetPasswordController, :new
-    post "/users/reset_password", UserResetPasswordController, :create
-    get "/users/reset_password/:token", UserResetPasswordController, :edit
-    put "/users/reset_password/:token", UserResetPasswordController, :update
-  end
-
-  scope "/", MaWeb do
-    pipe_through [:browser, :require_authenticated_user]
-
-    get "/users/settings", UserSettingsController, :edit
-    put "/users/settings", UserSettingsController, :update
-    get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
-
-    get "/users/settings/billing", UserSettingsController, :billing
-    post "/users/settings/billing", UserSettingsController, :manage
-
-    get "/users/billing/success", BillingController, :success
-    get "/users/billing/failure", BillingController, :failure
-    get "/users/billing", BillingController, :new
-  end
-
-  scope "/admin", MaWeb do
-    pipe_through [:browser, :require_authenticated_user, :admin]
-
-    live "/businesses", BusinessLive.Index, :index
-    live "/businesses/new", BusinessLive.Index, :new
-    live "/businesses/:id/edit", BusinessLive.Index, :edit
-
-    live "/businesses/:id", BusinessLive.Show, :show
-    live "/businesses/:id/show/edit", BusinessLive.Show, :edit
-  end
-
-  scope "/", MaWeb do
-    pipe_through [:browser]
-
-    delete "/users/log_out", UserSessionController, :delete
-    get "/users/confirm", UserConfirmationController, :new
-    post "/users/confirm", UserConfirmationController, :create
-    get "/users/confirm/:token", UserConfirmationController, :confirm
   end
 end

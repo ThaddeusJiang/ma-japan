@@ -4,8 +4,8 @@ defmodule MaWeb.BillingController do
   def new(conn, _params) do
     params = %{
       customer: "cus_IofxqtT9HQC2E4",
-      success_url: "http://localhost:4000/users/billing/success",
-      cancel_url: "http://localhost:4000/users/billing/failure",
+      success_url: "http://localhost:4000/settings/billing/checkout/success",
+      cancel_url: "http://localhost:4000/settings/billing/checkout/failure",
       payment_method_types: ["card"],
       line_items: [
         %{

@@ -23,7 +23,7 @@ defmodule MaWeb.UserSettingsController do
 
     params = %{
       customer: stripe_customer.id,
-      return_url: "http://localhost:4000/users/settings/billing"
+      return_url: "http://localhost:4000/settings/billing"
     }
 
     {:ok, portal_session} = Stripe.BillingPortal.Session.create(params)
@@ -72,6 +72,8 @@ defmodule MaWeb.UserSettingsController do
     end
   end
 
+  # 修改 email
+  # 这个功能应该禁止
   def confirm_email(conn, %{"token" => token}) do
     case Accounts.update_user_email(conn.assigns.current_user, token) do
       :ok ->
