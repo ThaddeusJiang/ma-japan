@@ -1,0 +1,23 @@
+<h1>Settings</h1>
+<section>
+  <div>
+    Profile
+    <%= link "Update", to: Routes.user_settings_path(@conn, :edit) %>
+  </div>
+  <div>
+    Password
+    <%= link "Change", to: Routes.user_settings_path(@conn, :edit) %>
+  </div>
+  <div>
+    Subscription
+    <%= form_for @conn, Routes.user_settings_path(@conn, :manage), [as: :user], fn f -> %>
+    <div>
+      <%= submit "Manage" %>
+    </div>
+  <% end %>
+</div>
+<div>
+  Businesses
+  <%= link "See more", to: Routes.business_index_path(@conn, :index) %>
+</div>
+</section>

@@ -17,10 +17,15 @@ defmodule Ma.Accounts.User do
   end
 
   @spec changeset_role(Ecto.Schema.t() | Ecto.Changeset.t(), map()) :: Ecto.Changeset.t()
-  def changeset_role(user_or_changeset, attrs) do
-    user_or_changeset
+  def changeset_role(user, attrs) do
+    user
     |> Ecto.Changeset.cast(attrs, [:role])
     |> Ecto.Changeset.validate_inclusion(:role, ~w(user admin))
+  end
+
+  def changeset_customer_id(user, attrs) do
+    user
+    |> Ecto.Changeset.cast(attrs, [:customer_id])
   end
 
   @doc """

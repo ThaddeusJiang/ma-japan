@@ -24,23 +24,22 @@ defmodule Ma.Accounts do
     |> Repo.update()
   end
 
+  def set_customer_id(user, customer_id) do
+    user
+    |> User.changeset_customer_id(%{customer_id: customer_id})
+    |> Repo.update()
+  end
+
   @spec is_admin?(t()) :: boolean()
   def is_admin?(%{role: "admin"}), do: true
   def is_admin?(_any), do: false
 
-  def is_member(%{customer_id: ""}) do
-    false
-  end
+  @spec is_member(nil | %{:customer_id => any, optional(any) => any}) :: boolean
+  def is_member(nil), do: false
+  def is_member(%{customer_id: ""}), do: false
+  def is_member(%{customer_id: _}), do: true
 
-  def is_member(%{customer_id: _}) do
-    true
-  end
-
-  @spec is_subscribed(%{:customer_id => binary | Stripe.Customer.t(), optional(any) => any}) ::
-          boolean
-  def is_subscribed(%{customer_id: ""}) do
-    false
-  end
+  def is_subscribed(%{customer_id: ""}), do: false
 
   def is_subscribed(%{customer_id: customer_id}) do
     {:ok, %{data: data}} = Stripe.Subscription.list(%{customer: customer_id})

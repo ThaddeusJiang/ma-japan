@@ -32,7 +32,13 @@ defmodule MaWeb.BillingController do
   end
 
   def failure(conn, _params) do
+    user = conn.assigns.current_user
+    reset_customer_id(user)
     render(conn, "failure.html")
+  end
+
+  defp reset_customer_id(user) do
+    Ma.Accounts.set_customer_id(user, "")
   end
 
   defp customer_id("", email) do
@@ -41,6 +47,9 @@ defmodule MaWeb.BillingController do
     }
 
     {:ok, stripe_customer} = Stripe.Customer.create(new_customer)
+
+    user = Ma.Accounts.get_user_by_email(email)
+    Ma.Accounts.set_customer_id(user, stripe_customer.id)
 
     stripe_customer.id
   end

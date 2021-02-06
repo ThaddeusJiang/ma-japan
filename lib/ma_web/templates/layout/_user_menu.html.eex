@@ -1,11 +1,11 @@
 <div>
   <%= if @current_user do %>
-    <span><%= @current_user.email %></span>
-    <%# admin page: controller + view + router %>
-    <span><%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %></span>
+    <span>
+      <%= link "#{@current_user.email}", to: Routes.user_settings_path(@conn, :edit) %>
+    </span>
     <span><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></span>
   <% else %>
-    <span><%= link "Register", to: Routes.user_registration_path(@conn, :new) %></span>
-    <span><%= link "Log in", to: Routes.user_session_path(@conn, :new) %></span>
+    <span class="gradient2 mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75"><%= link "Register", to: Routes.user_registration_path(@conn, :new) %></span>
+    <span class="gradient2 mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75"><%= link "Log in", to: Routes.user_session_path(@conn, :new) %></span>
   <% end %>
 </div>

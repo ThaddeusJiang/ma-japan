@@ -1,0 +1,8 @@
+<ul class="list-reset lg:flex justify-end flex-1 items-center">
+  <li class="mr-4 ">
+    <%= link "Businesses", to: Routes.product_path(@conn ,:index) %>
+  </li>
+  <li class="mr-4 ">
+    <%= link "About", to: Routes.my_static_path(@conn ,:about) %>
+  </li>
+</ul>

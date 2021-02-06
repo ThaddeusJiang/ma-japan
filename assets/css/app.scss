@@ -558,14 +558,10 @@ img {
   float: right;
 }
 
-// .container {
-//   margin: 0 auto;
-//   max-width: 80rem;
-//   padding: 0 2rem;
-//   position: relative;
-//   width: 100%;
-// }
-
 dd {
   @apply font-semibold;
+}
+
+main {
+  margin: 0 auto;
 }
