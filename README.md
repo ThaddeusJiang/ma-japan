@@ -1,8 +1,5 @@
-# Elixir/Erlang Selection
+# M&A Japan
 
-Elixir/Erlang 精选，定期分享一些有趣的 Elixir/Erlang 内容。
-
-使用技术
 
 * Phoenix LiveView
 * NimblePublisher

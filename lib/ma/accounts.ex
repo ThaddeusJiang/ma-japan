@@ -28,6 +28,17 @@ defmodule Ma.Accounts do
   def is_admin?(%{role: "admin"}), do: true
   def is_admin?(_any), do: false
 
+  def is_member(%{current_period: nil}) do
+    false
+  end
+
+  def is_member(%{current_period: current_period}) do
+    {:ok, now} = DateTime.now("Etc/UTC")
+    {:ok, last, _} = DateTime.from_iso8601(current_period)
+
+    DateTime.compare(now, last) == :lt
+  end
+
   ## Database getters
 
   @doc """

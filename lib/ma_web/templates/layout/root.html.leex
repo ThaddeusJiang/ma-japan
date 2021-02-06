@@ -17,16 +17,21 @@
       <%# 原来是这样，重利用 html %>
       <%= render "_user_menu.html", assigns %>
     </header>
-
-    <div class="flex-grow px-4 md:px-10">
-      <%= @inner_content %>
-    </div>
-
+    <%= if Ma.Accounts.is_member(@current_user) do  %>
+      <div class="flex-grow px-4 md:px-10">
+        <%= @inner_content %>
+      </div>
+    <% else %>
+      <div>
+        <p>You are not a member, pay for information.</p>
+        <%= link "Pay", to: Routes.billing_path(@conn, :new) %>
+      </div>
+    <% end %>
     <footer class="flex-none p-4 md:p-10">
       <div class="flex flex-wrap justify-center text-sm md:text-base md:space-x-2">
         <div class=" ">Craeted by <a href="//github.com/ThaddeusJiang" class="font-bold">Thaddeus Jiang</a></div>
         <div>Powered by <a href="https://www.phoenixframework.org/" class="font-semibold">Phoenix</a>
-      </div>
-    </footer>
-  </body>
-</html>
+        </div>
+      </footer>
+    </body>
+  </html>

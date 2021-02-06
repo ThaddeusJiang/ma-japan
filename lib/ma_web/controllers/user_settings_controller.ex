@@ -15,14 +15,12 @@ defmodule MaWeb.UserSettingsController do
   end
 
   def manage(conn, _) do
-    new_customer = %{
-      email: "thaddeusjiang@gmail.com"
-    }
+    user = conn.assigns.current_user
 
-    {:ok, stripe_customer} = Stripe.Customer.create(new_customer)
+    customer_id = customer_id(user.customer_id, user.email)
 
     params = %{
-      customer: stripe_customer.id,
+      customer: customer_id,
       return_url: "http://localhost:4000/settings/billing"
     }
 
@@ -30,6 +28,20 @@ defmodule MaWeb.UserSettingsController do
 
     conn
     |> redirect(external: portal_session.url)
+  end
+
+  defp customer_id(nil, email) do
+    new_customer = %{
+      email: email
+    }
+
+    {:ok, stripe_customer} = Stripe.Customer.create(new_customer)
+
+    stripe_customer.id
+  end
+
+  defp customer_id(id, _) do
+    id
   end
 
   def update(conn, %{"action" => "update_email"} = params) do
