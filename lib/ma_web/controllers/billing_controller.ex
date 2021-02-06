@@ -8,10 +8,12 @@ defmodule MaWeb.BillingController do
     require Logger
     Logger.debug(customer_id)
 
+    host = System.get_env("HOST", "http://localhost:4000")
+
     params = %{
       customer: customer_id,
-      success_url: "http://localhost:4000/settings/billing/checkout/success",
-      cancel_url: "http://localhost:4000/settings/billing/checkout/failure",
+      success_url: "#{host}/settings/billing/checkout/success",
+      cancel_url: "#{host}/settings/billing/checkout/failure",
       payment_method_types: ["card"],
       line_items: [
         %{

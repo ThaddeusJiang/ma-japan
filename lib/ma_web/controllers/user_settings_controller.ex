@@ -23,9 +23,14 @@ defmodule MaWeb.UserSettingsController do
 
     customer_id = customer_id(user.customer_id, user.email)
 
+    host = System.get_env("HOST", "http://localhost:4000")
+
+    require Logger
+    Logger.info(host)
+
     params = %{
       customer: customer_id,
-      return_url: "http://localhost:4000/settings"
+      return_url: "#{host}/settings"
     }
 
     {:ok, portal_session} = Stripe.BillingPortal.Session.create(params)
