@@ -4,7 +4,6 @@ defmodule Ma.Repo.Migrations.AddPaymentToUser do
   def change do
     alter table(:users) do
       add :customer_id, :string
-      add :current_period, :string
     end
   end
 end

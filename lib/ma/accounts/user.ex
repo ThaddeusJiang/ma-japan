@@ -12,7 +12,6 @@ defmodule Ma.Accounts.User do
     field :role, :string, null: false, default: "user"
 
     field :customer_id, :string
-    field :current_period, :string
 
     timestamps()
   end

@@ -1,5 +1,22 @@
 <section >
-  <%= for item <- @values do %>
-    <%= render "_business_card.html", conn: @conn,  value: item %>
+  <%= if Ma.Accounts.is_member(@current_user) do %>
+    <%= if Ma.Accounts.is_subscribed(@current_user) do %>
+      <%= for item <- @values do %>
+        <%= render "_business_card.html", conn: @conn,  value: item %>
+      <% end %>
+    <% else %>
+      <div>
+        <%= form_for @conn, Routes.user_settings_path(@conn, :manage), [as: :user], fn f -> %>
+        <div>
+          <%= submit "manage" %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
+<% else %>
+  <div>
+    <p>You are not a member, pay for information.</p>
+    <%= link "Pay", to: Routes.billing_path(@conn, :new) %>
+  </div>
+<% end %>
 </section>

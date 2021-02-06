@@ -28,15 +28,28 @@ defmodule Ma.Accounts do
   def is_admin?(%{role: "admin"}), do: true
   def is_admin?(_any), do: false
 
-  def is_member(%{current_period: nil}) do
+  def is_member(%{customer_id: ""}) do
     false
   end
 
-  def is_member(%{current_period: current_period}) do
-    {:ok, now} = DateTime.now("Etc/UTC")
-    {:ok, last, _} = DateTime.from_iso8601(current_period)
+  def is_member(%{customer_id: _}) do
+    true
+  end
 
-    DateTime.compare(now, last) == :lt
+  @spec is_subscribed(%{:customer_id => binary | Stripe.Customer.t(), optional(any) => any}) ::
+          boolean
+  def is_subscribed(%{customer_id: ""}) do
+    false
+  end
+
+  def is_subscribed(%{customer_id: customer_id}) do
+    {:ok, %{data: data}} = Stripe.Subscription.list(%{customer: customer_id})
+
+    if Enum.empty?(data) do
+      false
+    else
+      true
+    end
   end
 
   ## Database getters

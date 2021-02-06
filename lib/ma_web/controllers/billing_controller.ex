@@ -35,7 +35,7 @@ defmodule MaWeb.BillingController do
     render(conn, "failure.html")
   end
 
-  defp customer_id(nil, email) do
+  defp customer_id("", email) do
     new_customer = %{
       email: email
     }
