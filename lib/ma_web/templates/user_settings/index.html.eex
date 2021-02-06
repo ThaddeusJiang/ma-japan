@@ -1,23 +1,30 @@
 <h1>Settings</h1>
-<section>
-  <div>
-    Profile
-    <%= link "Update", to: Routes.user_settings_path(@conn, :edit) %>
+<section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  <div class="border h-24">
+    <h6>
+      Profile
+    </h6>
+    <%= link "Update" , to: Routes.user_settings_path(@conn, :edit) %>
   </div>
-  <div>
-    Password
-    <%= link "Change", to: Routes.user_settings_path(@conn, :edit) %>
+  <div class="border h-24">
+    <h6>
+      Password
+    </h6>
+    <%= link "Change" , to: Routes.user_settings_path(@conn, :edit) %>
   </div>
-  <div>
-    Subscription
-    <%= form_for @conn, Routes.user_settings_path(@conn, :manage), [as: :user], fn f -> %>
+  <div class="border h-24">
+    <h6>
+      Subscription
+    </h6>
+    <%= form_for @conn, Routes.user_settings_path(@conn, :manage), [as: :user] %>
     <div>
       <%= submit "Manage" %>
     </div>
-  <% end %>
-</div>
-<div>
-  Businesses
-  <%= link "See more", to: Routes.business_index_path(@conn, :index) %>
-</div>
+  </div>
+  <div class="border h-24">
+    <h6>
+      Businesses
+    </h6>
+    <%= link "See more" , to: Routes.business_index_path(@conn, :index) %>
+  </div>
 </section>

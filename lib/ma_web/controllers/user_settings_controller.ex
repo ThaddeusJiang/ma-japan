@@ -6,6 +6,10 @@ defmodule MaWeb.UserSettingsController do
 
   plug :assign_email_and_password_changesets
 
+  def index(conn, _params) do
+    render(conn, "index.html")
+  end
+
   def edit(conn, _params) do
     render(conn, "edit.html")
   end

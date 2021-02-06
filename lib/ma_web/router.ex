@@ -78,9 +78,10 @@ defmodule MaWeb.Router do
     # 如果未登录，跳转到 /login
     pipe_through [:browser, :require_authenticated_user]
 
-    get "/settings", UserSettingsController, :edit
-    put "/settings", UserSettingsController, :update
+    get "/settings", UserSettingsController, :index
     get "/settings/confirm_email/:token", UserSettingsController, :confirm_email
+    get "/settings/password", UserSettingsController, :edit
+    put "/settings/password", UserSettingsController, :update
     # 付款
     get "/settings/billing/checkout", BillingController, :new
     get "/settings/billing/checkout/success", BillingController, :success
