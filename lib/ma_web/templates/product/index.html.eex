@@ -9,6 +9,7 @@
       <% else %>
         <div>
           <%= form_for @conn, Routes.user_settings_path(@conn, :manage), [as: :user], fn f -> %>
+          <p>Invalid Subscription</p>
           <div>
             <%= submit "manage" %>
           </div>

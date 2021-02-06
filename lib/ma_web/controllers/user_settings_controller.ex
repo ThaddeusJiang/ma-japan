@@ -25,7 +25,7 @@ defmodule MaWeb.UserSettingsController do
 
     params = %{
       customer: customer_id,
-      return_url: "http://localhost:4000/settings/billing"
+      return_url: "http://localhost:4000/settings"
     }
 
     {:ok, portal_session} = Stripe.BillingPortal.Session.create(params)

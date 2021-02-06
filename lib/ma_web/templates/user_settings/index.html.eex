@@ -1,18 +1,12 @@
 <h1>Settings</h1>
 <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-  <div class="border h-24">
-    <h6>
-      Profile
-    </h6>
-    <%= link "Update" , to: Routes.user_settings_path(@conn, :edit) %>
-  </div>
-  <div class="border h-24">
+  <div class="border h-auto  p-4">
     <h6>
       Password
     </h6>
-    <%= link "Change" , to: Routes.user_settings_path(@conn, :edit) %>
+    <%= link "Change" , to: Routes.user_settings_path(@conn, :edit), class: "button" %>
   </div>
-  <div class="border h-24">
+  <div class="border h-auto  p-4">
     <h6>
       Subscription
     </h6>
@@ -21,10 +15,10 @@
       <%= submit "Manage" %>
     </div>
   </div>
-  <div class="border h-24">
+  <div class="border h-auto  p-4">
     <h6>
       Businesses
     </h6>
-    <%= link "See more" , to: Routes.business_index_path(@conn, :index) %>
+    <%= link "See more" , to: Routes.business_index_path(@conn, :index), class: "button" %>
   </div>
 </section>

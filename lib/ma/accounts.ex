@@ -42,13 +42,14 @@ defmodule Ma.Accounts do
   def is_subscribed(%{customer_id: ""}), do: false
 
   def is_subscribed(%{customer_id: customer_id}) do
-    {:ok, %{data: data}} = Stripe.Subscription.list(%{customer: customer_id})
+    {:ok, %{data: [header]}} = Stripe.Subscription.list(%{customer: customer_id})
 
-    if Enum.empty?(data) do
-      false
-    else
-      true
-    end
+    %{current_period_end: data} = header
+
+    {:ok, current_period_end} = DateTime.from_unix(data)
+    now = DateTime.utc_now()
+
+    DateTime.compare(now, current_period_end) == :lt
   end
 
   ## Database getters
