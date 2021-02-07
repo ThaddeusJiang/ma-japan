@@ -1,8 +1,8 @@
 <div class="leading-relaxed tracking-wide flex flex-col">
   <!--Nav-->
   <nav id="header" class="w-full z-30 top-0 text-white py-1">
-    <div class="w-full mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-2 lg:py-6">
-      <div class="pl-4 flex items-center">
+    <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0  py-2 lg:py-6">
+      <div class="flex items-center">
         <%= render "_logo.html" %>
       </div>
       <div class="block lg:hidden pr-4">

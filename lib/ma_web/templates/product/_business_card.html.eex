@@ -1,50 +1,45 @@
-<div class="space-y-2 py-6 border-b">
-  <div class="flex justify-between">
-    <div class="px-2 py-1 rounded-lg border">
-      <%= @value.category %>
+<%= link to: Routes.product_path(@conn ,:show, @value) do %>
+  <div class="md:grid md:grid-cols-4 md:gap-4">
+    <div >
+      <img  src="https://source.unsplash.com/400x300/?shop" alt="" loading="lazy"/>
     </div>
-    <div class="flex">
-      <span class="my-auto">
-        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
-      </span>
-      <span class="ml-4">
-        <%= @value.like_count %>
-      </span>
-
-      <span class="my-auto">
-        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-        </svg>
-      </span>
-      <span class="ml-4">
-        <%= @value.view_count %>
-      </span>
-    </div>
-  </div>
-  <h2 class="text-lg md:text-2xl font-bold tracking-tight ">
-    <%= link @value.name, to: Routes.product_path(@conn, :show, @value)%>
-  </h2>
-  <div class="flex justify-between">
-    <div>No.<%= @value.id %>
-
-    </div>
-    <div>
-      <%= if @value.public do %>
-        公开中
-        <% else %>
-          非公开
-          <% end %>
-    </div>
-
-  </div>
-  <div>
-    <div class="italic text-gray-500">
-      <%= @value.pr %>
+    <div class="space-y-2 md:col-span-3">
+      <div class="w-full border-b flex">
+        <h3>
+          <%= @value.name %>
+        </h3>
+      </div>
+      <div>
+        <span class="label">城市</span>
+        <span>
+          <%= @value.city %>
+        </span>
+      </div>
+      <div>
+        <span class="label">行业</span>
+        <span>
+          <%= @value.industry %>
+        </span>
+      </div>
+      <div>
+        <span class="label">交易截止日期</span>
+        <span>
+          <%= @value.trade_deadline %>
+        </span>
+      </div>
+      <div>
+        <span class="label">交易金额</span>
+        <span> <%= @value.min_price %> ~ <%= @value.max_price %> </span>
+      </div>
+      <div>
+        <span class="label">营业额</span>
+        <span> <%= @value.min_year_revenue %> ~ <%= @value.max_year_revenue %> </span>
+      </div>
+      <div>
+        <p>
+          <%= @value.summary %>
+        </p>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

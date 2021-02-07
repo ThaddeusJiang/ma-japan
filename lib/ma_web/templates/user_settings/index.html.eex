@@ -1,4 +1,8 @@
 <h1>Settings</h1>
+<p>Hi,
+  <%= @current_user.email %>
+</p>
+<h2>Member</h2>
 <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
   <div class="border h-auto  p-4">
     <h6>
@@ -20,5 +24,14 @@
       Businesses
     </h6>
     <%= link "See more" , to: Routes.business_index_path(@conn, :index), class: "button" %>
+  </div>
+</section>
+<h2>Admin</h2>
+<section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  <div class="border h-auto  p-4">
+    <h6>
+      Admin Businesses
+    </h6>
+    <%= link "Change" , to: Routes.business_index_path(@conn, :index), class: "button" %>
   </div>
 </section>

@@ -1,45 +1,41 @@
 <h2><%= @title %></h2>
-
 <%= f = form_for @changeset, "#",
   id: "business-form",
   phx_target: @myself,
   phx_change: "validate",
   phx_submit: "save" %>
-
-  <%= label f, :name %>
-  <%= text_input f, :name %>
-  <%= error_tag f, :name %>
-
-  <%= label f, :public %>
-  <%= checkbox f, :public %>
-  <%= error_tag f, :public %>
-
-  <%= label f, :public_date %>
-  <div>come soon ...</div>
-
-  <%= label f, :summary %>
-  <%= text_input f, :summary %>
-  <%= error_tag f, :summary %>
-
-  <%= label f, :min_price %>
-  <%= number_input f, :min_price %>
-  <%= error_tag f, :min_price %>
-
-  <%= label f, :max_price %>
-  <%= number_input f, :max_price %>
-  <%= error_tag f, :max_price %>
-
-  <%= label f, :category %>
-  <%= text_input f, :category %>
-  <%= error_tag f, :category %>
-
-  <%= label f, :personal %>
-  <%= checkbox f, :personal %>
-  <%= error_tag f, :personal %>
-
-  <%= label f, :pr %>
-  <%= text_input f, :pr %>
-  <%= error_tag f, :pr %>
-
-  <%= submit "Save", phx_disable_with: "Saving..." %>
+<%= label f, :name %>
+<%= text_input f, :name %>
+<%= error_tag f, :name %>
+<%= label f, :summary %>
+<%= textarea f, :summary %>
+<%= error_tag f, :summary %>
+<%= label f, :min_price %>
+<%= number_input f, :min_price %>
+<%= error_tag f, :min_price %>
+<%= label f, :max_price %>
+<%= number_input f, :max_price %>
+<%= error_tag f, :max_price %>
+<%= label f, :category %>
+<%= text_input f, :category %>
+<%= error_tag f, :category %>
+<%= label f, :personal %>
+<%= checkbox f, :personal %>
+<%= error_tag f, :personal %>
+<%= label f, :pr %>
+<%= text_input f, :pr %>
+<%= error_tag f, :pr %>
+<%= label f, :industry %>
+<%= text_input f, :industry %>
+<%= error_tag f, :industry %>
+<%= label f, :trade_deadline %>
+<%= text_input f, :trade_deadline %>
+<%= error_tag f, :trade_deadline %>
+<%= label f, :min_year_revenue %>
+<%= text_input f, :min_year_revenue %>
+<%= error_tag f, :min_year_revenue %>
+<%= label f, :max_year_revenue %>
+<%= text_input f, :max_year_revenue %>
+<%= error_tag f, :max_year_revenue %>
+<%= submit "Save", phx_disable_with: "Saving..." %>
 </form>
