@@ -42,6 +42,7 @@ defmodule MaWeb.Router do
     pipe_through [:browser]
 
     get "/blogs", BlogController, :index
+    get "/demo", DemoController, :index
     get "/blogs/:id", BlogController, :show
 
     get "/businesses", ProductController, :index

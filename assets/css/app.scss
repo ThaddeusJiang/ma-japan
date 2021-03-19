@@ -104,7 +104,6 @@ blockquote *:last-child {
   margin-bottom: 0;
 }
 .button,
-button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
@@ -126,7 +125,6 @@ input[type="submit"] {
   white-space: nowrap;
 }
 
-button,
 .button {
   // background-color: #0069d9;
   border: 0.1rem solid #0069d9;
@@ -594,4 +592,8 @@ main {
   @apply py-1;
   @apply px-2;
   @apply min-w-min;
+}
+
+.test-class {
+  color: hotpink;
 }

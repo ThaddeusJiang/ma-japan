@@ -1,0 +1,14 @@
+<section >
+
+  <%= content(@conn, "test 1", :html, classes: "test-class") do %>
+  <p>
+          Quem firmissimum ullamco quae esse e commodo de incurreret o
+          deserunt. Nam e domesticarum, incurreret dolor est officia cohaerescant, de aut
+          instituendarum se probant aliqua eram occaecat duis ea nostrud consectetur non
+          mentitum, vidisse magna laboris constias, elit officia aut adipisicing ab de
+          quorum aute malis officia.
+  </p>
+  <% end %>
+
+
+</section>
