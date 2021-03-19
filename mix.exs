@@ -54,7 +54,8 @@ defmodule Ma.MixProject do
       {:makeup_elixir, ">= 0.0.0"},
       {:makeup_erlang, ">= 0.0.0"},
       {:bamboo, "~> 1.6"},
-      {:stripity_stripe, "~> 2.0"}
+      {:stripity_stripe, "~> 2.0"},
+      {:thesis, "~> 0.3.4"}
     ]
   end
 
